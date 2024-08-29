@@ -1,0 +1,282 @@
+.userprofile-container{
+    height: 640px;
+    border: 2px solid;
+    box-sizing: border-box;
+    /* overflow-y: hidden; */
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-profile{
+    /* border: 2px solid red; */
+    width: 60%;
+    min-height: 90%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    padding: 20px;
+    gap:10px;
+}
+
+.edit-profile{
+    /* border: 2px solid green; */
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-form{
+    /* border: 2px solid orange; */
+    border-radius: 10px;
+    box-shadow: 0 0 5px black;
+    padding: 10px;
+    height: 100%;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f1f1f1;
+}
+
+.edit-header{
+    display: flex;
+    align-items: center;
+    padding-bottom: 3px;
+    /* border: 2px solid; */
+    width: 250px;
+    gap:20px;
+    justify-content: center;
+}
+
+.edit-header img{
+    width: 50px;
+    cursor: pointer;
+}
+
+.edit-header img:hover{
+    width: 49px;
+}
+
+.edit-header h3{
+    font-size: 25px;
+    font-family: "Bebas Neue", sans-serif;
+}
+
+.edit-form form{
+    width: 50%;
+    /* border: 2px solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.edit-form .edit-input{
+    display: flex;
+    padding: 4px;
+    align-items: center;
+    border: 1px solid;
+    height: 40px;
+    margin-bottom: 10px;
+    width: 90%;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.edit-form .edit-input input{
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    font-size:medium;
+    padding-left: 10px;
+}
+
+.edit-form .edit-input img{
+    width: 38px;
+}
+
+.edit-submit{
+    width: 57%;
+    background-color: #0083CF;
+    color: white;
+    border-radius: 4px;
+    height: 35px;
+    border: none;
+    outline: none;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 2px 2px  black;
+    transition: all ease 0.1s;
+}
+
+.edit-submit:hover{
+    border: 1px solid;
+    font-size: 14px;
+    box-shadow: none;
+}
+
+.display-profile{
+    /* border: 2px solid yellow; */
+    height: 70%;
+    /* overflow-y: auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* User Profile CSS..................................................... */
+
+.display-profile-div{
+    border-radius: 10px;
+    box-shadow: 0 0 5px black;
+    padding: 10px;
+    min-height: 95%;
+    overflow: auto;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* justify-content: center; */
+    background-color: #f1f1f1;
+}
+.display-profile-header{
+    /* border: 2px solid; */
+    display: flex;
+    align-items: center;
+    gap:20px;
+    padding: 5px;
+}
+
+.display-profile-header img{
+    width: 50px;
+    cursor: pointer;
+}
+
+.display-profile-header img:hover{
+    width: 49px;
+}
+
+.display-profile-header h3{
+    font-size: 25px;
+    font-family: "Bebas Neue", sans-serif;
+}
+
+.user-details{
+    /* border: 2px solid; */
+    width: 50%;
+    /* min-height: 80%; */
+    height: 80%;
+    /* overflow: auto; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.user-details h5{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 19px;
+}
+
+.user-username{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+    padding: 10px;
+    /* border: 1px solid; */
+}
+
+.user-username img{
+    width: 35px;
+    cursor: pointer;
+}
+
+.user-email{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+    padding: 10px;
+    /* border: 1px solid; */
+    margin-top: 10px;
+}
+
+.user-email img{
+    width: 35px;
+    cursor: pointer;
+}
+
+.user-details input{
+    min-height: 45px;
+    width: 44%;
+    outline: none;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 0 2px;
+    margin-top: 10px;
+    padding-left: 10px;
+    font-size: 14px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.Edit-profile{
+    width: 150px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    box-shadow: 2px 2px black;
+    background-color: #0083CF;
+    margin: 20px 0;
+    border-radius: 5px;
+    color: white;
+    transition: all ease 0.1s;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.Edit-profile:hover{
+    /* border: 1px solid black; */
+    box-shadow: none;
+    font-size: 14px;
+}
+
+.hide{
+    display: none;
+}
+
+
+/* Toggel Btn */
+.toggle-edit-pro{
+    width: 18%;
+    background-color:black;
+    color: white;
+    border-radius: 4px;
+    height: 35px;
+    border: none;
+    outline: none;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 3px 3px  grey;
+    transition: all ease 0.2s;
+}
+
+.toggle-edit-pro:hover{
+    box-shadow: none;
+    /* border: 1px solid black; */
+    font-size: 14px;
+}

@@ -1,4 +1,4 @@
-.container{
+.container {
     /* border:  2px solid red; */
     margin: 10px 10px;
     height: 60px;
@@ -10,9 +10,9 @@
     border-radius: 10px;
 }
 
-.nav{
+.nav {
     display: flex;
-    gap:50px;
+    gap: 50px;
     /* border: 2px solid; */
     width: 30%;
     justify-content: space-evenly;
@@ -20,57 +20,70 @@
     padding: 5px;
 }
 
-.nav img{
+.nav img {
     cursor: pointer;
     width: 40px;
 }
 
-.nav img:hover{
+.nav img:hover {
     cursor: pointer;
     width: 39px;
 }
-.nav li{
+
+.nav li {
     list-style: none;
+    color: rgb(59, 59, 59);
     font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
     cursor: pointer;
-    padding: 5px;   
+    padding: 5px;
+    width: 100%;
+    font-family: "Bebas Neue", sans-serif;
+    text-align: center;
+    /* border: 2px solid; */
 }
 
-.nav li:hover{
-   font-weight: bold;
+.nav li.active{
+    border-bottom: 2px dotted;
+    color: black;
+    font-weight: bold;
 }
 
-.btn{
+.nav li:hover {
+    font-weight: bold;
+    color: black;
+}
+
+.btn {
     /* border: 2px solid; */
     width: 30%;
     padding: 10px;
     display: flex;
-    gap:30px;
+    gap: 30px;
     justify-content: center;
     height: auto;
 }
 
-.btn button{
+.btn button {
     width: 125px;
     height: auto;
     padding: 10px;
     background-color: #0083CF;
     color: white;
     outline: none;
-    border: 2px solid;
+    border: 1px solid black;
     cursor: pointer;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 19px;
+    box-shadow: 2px 2px black;
     font-weight: normal;
     transition: all ease 0.1s;
     border-radius: 10px;
 }
 
-.btn button:hover{
-    border: none;  
-    font-size: 15px;
+.btn button:hover {
     border: none;
-    box-shadow: 0 0 10px;
+    font-size: 17px;
+    border: none;
+    box-shadow: none;
 }

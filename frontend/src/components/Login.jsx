@@ -4,24 +4,21 @@ import email from '../assets/email.svg'
 import password from '../assets/password.svg'
 import openeye from '../assets/openeye.svg'
 import closeeye from '../assets/closeeye.svg'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 
-const Login = () => {
+const Login = ({ onLogin }) => {
+
+    const navigate = useNavigate()
 
     //State For Display Password
     const passRef = useRef()
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
-    const handleShowPassword=() => {
-      setIsPasswordVisible(!isPasswordVisible)
-      if(isPasswordVisible===true){
-        passRef.current.src=closeeye
-      }
-      else{
-        passRef.current.src=openeye
-      }
+    const handleShowPassword = () => {
+        setIsPasswordVisible(!isPasswordVisible)
     }
-    
+
 
     // State for form data
     const [formData, setFormData] = useState({
@@ -55,16 +52,39 @@ const Login = () => {
     };
 
     // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
             console.log('Form submitted:', formData);
-            // Handle login (e.g., send data to an API)
-            // Reset the form data (optional)
-            setFormData({
-                email: '',
-                password: ''
-            });
+
+            // Handle login (Login Logic................................................................)
+            try {
+                const response = await fetch('http://localhost:3000/api/users/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },  
+                    body: JSON.stringify(formData),
+                    credentials: 'include'
+                })
+
+                if (!response.ok) {
+                    console.log("Login Faild!!")
+                }
+                // If Login Succes Do Following................
+                const result = await response.json()
+                console.log(result)
+                console.log("Data",result.data.user)
+                onLogin()
+                alert(result.message)
+                navigate('/userprofile',{state:{user:result.data.user}})
+                setFormData({
+                    email: '',
+                    password: ''
+                });
+            } catch (error) {
+                console.log(error)
+            }
         }
     };
 
@@ -91,13 +111,13 @@ const Login = () => {
                             {/* <label>Password:</label> */}
                             <img src={password} alt="" />
                             <input
-                                type={isPasswordVisible?"text":"password"}
+                                type={isPasswordVisible ? "text" : "password"}
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
                                 placeholder="Enter Your Password"
                             />
-                            <img ref={passRef} className='showPass' src={openeye} alt="" onClick={handleShowPassword}/>
+                            <img ref={passRef} className='showPass' src={isPasswordVisible ? closeeye : openeye} alt="" onClick={handleShowPassword} />
                         </div>
                         {errors.password && <p className="login-error">{errors.password}</p>}
                         <button className="login-submit" type="submit">Login</button>

@@ -1,0 +1,71 @@
+.display-todos-container {
+    height: 600px;
+    /* border: 2px solid; */
+    box-sizing: border-box;
+    overflow-y: hidden;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    /* align-items: center; */
+}
+
+.display-todos {
+    /* border: 2px solid red; */
+    width: 90%;
+    height: 95%;
+    display: flex;
+    /* justify-content: center; */
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 0 5px black;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+}
+
+.todos-header-div{
+    border: 2px solid red;
+    height: 30%;
+    width: 100%;
+}
+
+.todos-div{
+    border: 2px solid red;
+    width: 100%;
+    min-height: 70%;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+.todo-item{
+    border: 2px solid;
+    display: flex;
+    gap:20px;
+    height: 60px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.todo-item .title{
+    width: 20%;
+    border: 2px solid red;
+    display: flex;
+    align-items: center;
+}
+
+.todo-item .description{
+    width: 55%;
+    border: 2px solid red;
+    display: flex;
+    align-items: flex-start;
+    overflow: auto;
+}
+
+.todo-item .action-btn{
+    width: 20%;
+    border: 2px solid red;
+}

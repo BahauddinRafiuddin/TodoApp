@@ -98,8 +98,9 @@
     width: 57%;
     border-radius: 5px;
     background-color: white;
-    pointer-events:auto;
-    resize: none; /* Disable manual resizing */
+    pointer-events: auto;
+    resize: none;
+    /* Disable manual resizing */
     overflow: auto;
 }
 
@@ -127,13 +128,14 @@
     font-size: 20px;
     cursor: pointer;
     color: white;
-    box-shadow: 0 0 3px black;
-    border: 2px solid black;
+    box-shadow: 2px 2px black;
+    /* border: 2px solid black; */
+    transition: all ease-in-out 0.2s;
 }
 
-.add-todos-submit:hover{
-   box-shadow: none;
-    border: 1px solid black;
+.add-todos-submit:hover {
+    box-shadow: none;
+    /* border: 1px solid black; */
     font-size: 19px;
 }
 
@@ -155,13 +157,13 @@
 .view-todo h4 {
     font-family: "Bebas Neue", sans-serif;
     font-size: 20px;
-    color: blue ;
+    color: blue;
 }
 
-.view-todo h4:hover{
+.view-todo h4:hover {
     font-size: 19px;
 }
 
-.view-todo img:hover{
+.view-todo img:hover {
     width: 23px;
 }

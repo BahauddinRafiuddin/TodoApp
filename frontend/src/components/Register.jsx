@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom'
 import './css/Register.css'
 import email from '../assets/email.svg'
 import password from '../assets/password.svg'
@@ -7,20 +8,16 @@ import username from '../assets/username.svg'
 import openeye from '../assets/openeye.svg'
 import closeeye from '../assets/closeeye.svg'
 
-const Register = () => {
+const Register = ({ onRegister }) => {
+
+    const navigate = useNavigate(); // Initialize useNavigate
 
     //State For Display Password
     const passRef = useRef()
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
-    const handleShowPassword=() => {
-      setIsPasswordVisible(!isPasswordVisible)
-      if(isPasswordVisible===true){
-        passRef.current.src=closeeye
-      }
-      else{
-        passRef.current.src=openeye
-      }
+    const handleShowPassword = () => {
+        setIsPasswordVisible(!isPasswordVisible)
     }
 
 
@@ -57,16 +54,40 @@ const Register = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
             console.log('Form submitted:', formData);
             // Handle form submission (e.g., send data to an API)
-            setFormData({
-                username: '',
-                email: '',
-                password: '',
-            })
+
+            try {
+                const response = await fetch('http://localhost:3000/api/users/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                })
+
+                if (!response.ok) {
+                    throw new Error('Network Response Was Not Ok!')
+                }
+
+                const result = await response.json()
+                console.log(result)
+
+                onRegister()
+                alert("Registration Successfull")
+
+                setFormData({
+                    username: '',
+                    email: '',
+                    password: '',
+                })
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+
         }
     };
 
@@ -112,7 +133,7 @@ const Register = () => {
                             {/* <label htmlFor="password">Password</label> */}
                             <img src={password} alt="" />
                             <input
-                                type={isPasswordVisible?"text":"password"}
+                                type={isPasswordVisible ? "text" : "password"}
                                 id="password"
                                 name="password"
                                 value={formData.password}
@@ -120,12 +141,18 @@ const Register = () => {
                                 placeholder='Password'
                                 autoComplete='off'
                             />
-                            <img ref={passRef} className='showPass' src={openeye} alt="" onClick={handleShowPassword}/>
+                            <img ref={passRef} className='showPass' src={isPasswordVisible ? closeeye : openeye} alt="" onClick={handleShowPassword} />
                         </div>
                         {errors.password && <p className="register-error">{errors.password}</p>}
 
                         <button className="register-submit" type="submit">Submit</button>
                     </form>
+                    <button
+                        className="login-redirect"
+                        onClick={() => navigate('/login')}
+                    >
+                        Already registered? Go to Login
+                    </button>
                 </div>
             </div>
         </>

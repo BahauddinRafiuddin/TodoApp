@@ -84,7 +84,7 @@ const loginUser = asyncHandlers(async (req, res) => {
 
     const { refreshToken, accessToken } = await generateRefreshTokenAndAccessToken(user._id)
 
-    const loggedUser = await User.findById(user._id).select("-password -refreshToken")
+    const loggedUser = await User.findById(user._id).select("-password ")
 
     // we need to create Options To Send Cookies ... 
     const options = {
@@ -103,27 +103,29 @@ const loginUser = asyncHandlers(async (req, res) => {
 })
 
 const logoutUser = asyncHandlers(async (req, res) => {
+    const options = {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'None'
+    }
 
     await User.findByIdAndUpdate(
         req.user?._id,
         {
             $set: {
-                refreshToken: 1
+                refreshToken: null
             }
         }, { new: true }
     )
 
-    const options = {
-        httpOnly: true,
-        secure: true
-    }
+    // console.log('User updated');
 
     return res.status(200)
-        .clearCookie("accessToken", options)
-        .clearCookie("refreshToken", options)
-        .json(
-            new ApiResponse(200, {}, "User Logout Successfully")
-        )
+    .clearCookie("accessToken", options)
+    .clearCookie("refreshToken", options)
+    .json(
+        new ApiResponse(200,{},"Logout succesfull")
+    )
 })
 
 const changeUserPassword = asyncHandlers(async (req, res) => {

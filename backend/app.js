@@ -7,7 +7,10 @@ const app = express()
 // MiddleWares That Run In Middle Of Request ..
 
 // You Can Set The Origin From Where Can Request Come
-app.use(cors({ origin: process.env.CORS_ORIGIN, Credential: true }))
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}))
 
 // Set The Limit Of Json Data
 app.use(express.json({ limit: "16kb" }))
@@ -24,8 +27,8 @@ app.use(cookieParser())
 // Importing User Routes
 import userRouter from './routes/user.routes.js'
 import todosRouter from './routes/todos.routes.js'
-app.use('/api/users',userRouter)
-app.use('/api/todos',todosRouter)
+app.use('/api/users', userRouter)
+app.use('/api/todos', todosRouter)
 
 export { app }
 
