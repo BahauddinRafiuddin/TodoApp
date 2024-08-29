@@ -157,7 +157,7 @@ const Register = ({ onRegister }) => {
                         className="login-redirect"
                         onClick={handleNavigateLogin}
                     >
-                        Already registered? Go to Login
+                        Already Registered? <span>Go To Login</span>
                     </button>
                 </div>
             </div>

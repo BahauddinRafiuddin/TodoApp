@@ -13,6 +13,8 @@ const AddTodo = () => {
         ref.current.focus()
     }
 
+    const [message, setmessage] = useState('')
+
     // Navating To Display Todos Page...
     const navigate = useNavigate()
 
@@ -70,7 +72,7 @@ const AddTodo = () => {
                 const result=await response.json()
                 console.log("Todo: ",result)
                 alert(result.message)
-                
+                setmessage(result.message)
                 setFormData({
                     title: '',
                     description: ''
@@ -114,7 +116,7 @@ const AddTodo = () => {
                         </div>
                         {errors.description && <p className="add-todos-error">{errors.description}</p>}
                         <button className='add-todos-submit' type="submit">Submit</button>
-                        <p className='form-p'>Todo Added Succesfully</p>
+                        <p className='form-p'>{message}</p>
                         <div className="view-todo" onClick={navigateViewTodo}>
                             <img src={view} alt="View Todos" />
                             <h4>View My Todos</h4>

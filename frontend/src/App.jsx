@@ -40,6 +40,11 @@ function App() {
     localStorage.removeItem('isAuthenticated');
   };
 
+  const handleRemoveRegister=() => {
+    setIsRegistered(false)
+    localStorage.removeItem('isRegistered');
+  }
+  
   return (
     <>
       <Router>
@@ -47,11 +52,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={!isRegistered ? <Register onRegister={handleRegister} /> : <Navigate to="/login" />} />
-          <Route path="/login" element={isRegistered ? <Login onLogin={handleLogin} /> : <Navigate to="/register" />} />
-          {/* <Route path="/addtodo" element={isAuthenticated ? <AddTodo /> : <Navigate to="/login" />} /> */}
+          <Route path="/login" element={isRegistered ? <Login onLogin={handleLogin} onRemoveRegister={handleRemoveRegister}/> : <Navigate to="/register" />} />
+          <Route path="/addtodo" element={isAuthenticated ? <AddTodo /> : <Navigate to="/login" />} />
           <Route path="/viewtodo" element={isAuthenticated ? <DisplayTodos /> : <Navigate to="/login" />} />
           <Route path="/userprofile" element={isAuthenticated ? <UserProfile /> : <Navigate to="/login" />} />
-          <Route path='/addtodo' element={<AddTodo/>}/>
+           
+          {/* <Route path='/addtodo' element={<AddTodo/>}/> */}
         </Routes>
       </Router>
     </>

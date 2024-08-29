@@ -7,9 +7,14 @@ import closeeye from '../assets/closeeye.svg'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, onRemoveRegister }) => {
 
     const navigate = useNavigate()
+
+    const handleNavigateToRegister = () => {
+        onRemoveRegister()
+        navigate('/register')
+    }
 
     //State For Display Password
     const passRef = useRef()
@@ -63,7 +68,7 @@ const Login = ({ onLogin }) => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                    },  
+                    },
                     body: JSON.stringify(formData),
                     credentials: 'include'
                 })
@@ -74,10 +79,10 @@ const Login = ({ onLogin }) => {
                 // If Login Succes Do Following................
                 const result = await response.json()
                 console.log(result)
-                console.log("Data",result.data.user)
+                console.log("Data", result.data.user)
                 onLogin()
                 alert(result.message)
-                navigate('/userprofile',{state:{user:result.data.user}})
+                navigate('/userprofile', { state: { user: result.data.user } })
                 setFormData({
                     email: '',
                     password: ''
@@ -122,6 +127,9 @@ const Login = ({ onLogin }) => {
                         {errors.password && <p className="login-error">{errors.password}</p>}
                         <button className="login-submit" type="submit">Login</button>
                     </form>
+                    <button onClick={handleNavigateToRegister} className='redirect-register'>
+                        Don't Have Account ?<span>Register Here</span>
+                    </button>
                 </div>
             </div>
         </>

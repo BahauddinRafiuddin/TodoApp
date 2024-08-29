@@ -26,8 +26,8 @@ const UserProfile = () => {
 
     // State for form data
     const [formData, setFormData] = useState({
-        username: user.username,
-        email: user.email
+        username: user?.username,
+        email: user?.email
     });
     // State for form validation
     const [errors, setErrors] = useState({});
