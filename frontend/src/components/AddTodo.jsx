@@ -1,4 +1,4 @@
-import React, { useState,useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import './css/AddTodo.css'
 import add from '../assets/add.svg'
 import view from '../assets/view.svg'
@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom'
 const AddTodo = () => {
 
     //Ref For Add Todo..
-    const ref=useRef()
+    const ref = useRef()
 
-    const handleRef=() => {
-      ref.current.focus()
+    const handleRef = () => {
+        ref.current.focus()
     }
-    
+
     // Navating To Display Todos Page...
     const navigate = useNavigate()
 
@@ -48,16 +48,36 @@ const AddTodo = () => {
     };
 
     // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
             console.log('Form submitted:', formData);
             // Handle form submission (e.g., send data to an API)
-            // Reset the form data (optional)
-            setFormData({
-                title: '',
-                description: ''
-            });
+            try {
+                const response = await fetch('http://localhost:3000/api/todos/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                    credentials: 'include',
+                })
+
+                if(!response.ok){
+                    console.log('Cant Add Todo!!')
+                }
+
+                const result=await response.json()
+                console.log("Todo: ",result)
+                alert(result.message)
+                
+                setFormData({
+                    title: '',
+                    description: ''
+                });
+            } catch (error) {
+                console.log(error)
+            }
         }
     };
 
@@ -68,7 +88,7 @@ const AddTodo = () => {
                 <div className="add-todos-form">
                     <form onSubmit={handleSubmit} className='todos-form'>
                         <div className="heading">
-                            <img src={add} onClick={handleRef}/>
+                            <img src={add} onClick={handleRef} />
                             <h2>Add Your Todos </h2>
                         </div>
 

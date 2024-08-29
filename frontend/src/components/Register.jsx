@@ -41,6 +41,12 @@ const Register = ({ onRegister }) => {
         });
     };
 
+    const handleNavigateLogin=() => {
+      onRegister()
+      navigate('/login')
+    }
+    
+
     const validate = () => {
         const newErrors = {};
         if (!formData.username) newErrors.username = 'Username is required';
@@ -149,7 +155,7 @@ const Register = ({ onRegister }) => {
                     </form>
                     <button
                         className="login-redirect"
-                        onClick={() => navigate('/login')}
+                        onClick={handleNavigateLogin}
                     >
                         Already registered? Go to Login
                     </button>

@@ -31,6 +31,7 @@ function App() {
   // Function to handle login
   const handleLogin = () => {
     setIsAuthenticated(true);
+    localStorage.setItem('isAuthenticated','true')
   };
 
   // Function to handle logout
@@ -47,10 +48,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={!isRegistered ? <Register onRegister={handleRegister} /> : <Navigate to="/login" />} />
           <Route path="/login" element={isRegistered ? <Login onLogin={handleLogin} /> : <Navigate to="/register" />} />
-          <Route path="/addtodo" element={isAuthenticated ? <AddTodo /> : <Navigate to="/login" />} />
+          {/* <Route path="/addtodo" element={isAuthenticated ? <AddTodo /> : <Navigate to="/login" />} /> */}
           <Route path="/viewtodo" element={isAuthenticated ? <DisplayTodos /> : <Navigate to="/login" />} />
-          {/* <Route path="/userprofile" element={isAuthenticated ? <UserProfile /> : <Navigate to="/login" />} /> */}
-          <Route path="/userprofile" element={ <UserProfile /> }/>
+          <Route path="/userprofile" element={isAuthenticated ? <UserProfile /> : <Navigate to="/login" />} />
+          <Route path='/addtodo' element={<AddTodo/>}/>
         </Routes>
       </Router>
     </>

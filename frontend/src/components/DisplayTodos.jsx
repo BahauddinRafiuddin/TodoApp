@@ -1,33 +1,55 @@
 import React from 'react'
 import './css/DisplayTodo.css'
+import { useEffect ,useState} from 'react'
 import { useLocation } from 'react-router-dom'
 
 const DisplayTodos = () => {
-    const location=useLocation()
-    const userId=location.state?.userId
-    console.log("User ID: ",userId)
-    // Write Logic Of Geting User Todos By User Id
+    const [todos, setTodos] = useState([]); // State to store todos
+    useEffect(() => {
+        const fetchUserTodos = async() => {
+            try {
+                const response=await fetch('http://localhost:3000/api/todos/',{
+                    method:'GET',
+                    headers:{
+                        'Content-Type':'application/json',
+                    },
+                    credentials:'include'
+                })
 
-    
-    const todos = [
-        {
-            title: "First Todo",
-            description: "First Todo Description"
-        },
-        {
-            title: "Secound Todo",
-            description: "Secound Todo Description"
-        },
-        {
-            title: "Third Todo",
-            description: "Third Todo Description"
-        },
-        {
-            title: "Fourth Todo",
-            description: "Fourth Todo Description"
-        },
+                if(!response.ok){
+                    console.log("Cant Fetch Todos!")
+                }
 
-    ]
+                const result=await response.json()
+                console.log('All Todos: ',result)
+                setTodos(result.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchUserTodos()
+    }, [])
+
+    console.log(todos)
+    // const todos = [
+    //     {
+    //         title: "First Todo",
+    //         description: "First Todo Description"
+    //     },
+    //     {
+    //         title: "Secound Todo",
+    //         description: "Secound Todo Description"
+    //     },
+    //     {
+    //         title: "Third Todo",
+    //         description: "Third Todo Description"
+    //     },
+    //     {
+    //         title: "Fourth Todo",
+    //         description: "Fourth Todo Description"
+    //     },
+
+    // ]
     // console.log(todos)
     return (
         <>
