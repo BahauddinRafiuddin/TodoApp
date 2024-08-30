@@ -40,6 +40,7 @@ const UserProfile = () => {
             [name]: value
         });
     };
+    
 
     // Validate form fields
     const validate = () => {
