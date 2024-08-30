@@ -56,6 +56,7 @@ const Login = ({ onLogin, onRemoveRegister }) => {
         return Object.keys(newErrors).length === 0; // Return true if no errors
     };
 
+    // ..........................Login......................
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();

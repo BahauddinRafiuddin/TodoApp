@@ -38,6 +38,10 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
   }
 
   const handleLogoutClick = async () => {
+    const userresponse=window.confirm("Are You Sure You Want To LogOut?")
+    if(!userresponse){
+      return
+    }
     try {
       const response = await fetch('http://localhost:3000/api/users/logout', {
         method: 'POST',
